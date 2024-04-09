@@ -21,12 +21,18 @@
     
     <h2>Visualization 1: Number of Buildings by Agency</h2>
     <div id="vis1"></div>
+    <p>This bar chart provides a quantitative overview of the buildings managed by each state agency. By visualizing the 'Building Count' on the x-axis and the 'Agency Name' on the y-axis, it is immediately apparent which agencies are responsible for the most buildings. This view is particularly useful for state resource planning and public information.</p>
+    <p>In designing this visualization, I opted for a horizontal bar chart to better display the agency names without clutter. The chart is sorted in descending order, so the agency with the most buildings is at the top, which makes it easier to read and understand at a glance. No specific color scheme was used, as the focus is on the count rather than categorization by agency.</p>
 
     <h2>Visualization 2: Buildings by Congressional and Senate Districts</h2>
     <div id="vis2"></div>
+    <p>This interactive visualization uses a scatter plot to represent the distribution of buildings across Congressional and Senate Districts, with the additional capability to filter by the 'Year Acquired'. The x-axis shows the Congressional Districts and the y-axis the Senate Districts, while the color encodes the 'Agency Name'.</p>
+    <p>A slider allows the viewer to filter the data by the year in which buildings were acquired, adding an interactive element that enables users to explore trends over time. The choice to color-code by agency helps to highlight which agencies have holdings in particular districts. The tooltip provides additional details on hover, giving further context to each data point.</p>
 
     <h2>Visualization 3: Square Footage of Buildings Over Years by Status</h2>
     <div id="vis3"></div>
+    <p>In this scatter plot, we delve into the relationship between the square footage of buildings and the year they were constructed, distinguished by building status. The x-axis represents the 'Year Constructed', the y-axis shows the 'Square Footage', and the color differentiates the 'Bldg Status'. The plot ranges from the year 1700 to 2025 to encompass the entire history of the building inventory.</p>
+    <p>An interactive dropdown menu allows viewers to select a building status, such as "In Use" or "Vacant", to filter the visualization. This interactivity adds a layer of exploration, enabling stakeholders to assess how building usage has evolved. A color scheme corresponding to different statuses assists in this analysis, with a legend facilitating understanding.</p>
 
     <script>
       // Embed Visualization 1
