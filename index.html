@@ -35,56 +35,40 @@
     <a href="https://raw.githubusercontent.com/UIUC-iSchool-DataViz/is445_data/main/building_inventory.csv" class="button" target="_blank">The Data</a>
     <a href="https://github.com/vporwal3/vporwal3.github.io/tree/main/workbook.ipynb" class="button" target="_blank">The Analysis</a>
     
-    <!-- Refresh Button -->
-    <button id="refreshButton" class="button">Refresh Data</button>
-    <p id="refreshMessage"></p>
-
     <h2>Visualization 1: Number of Buildings by Agency</h2>
     <div id="vis1"></div>
-    <!-- Visualization 1 description -->
+    <p>This visualization presents a horizontal bar chart displaying the number of buildings managed by each state agency in Illinois. Designed for clear readability, the chart's horizontal layout allows for easy comparison across agencies, with the x-axis quantifying the buildings and the y-axis listing the agency names. The bars are sorted in descending order, placing agencies with larger inventories at the top. A consistent color palette was chosen to maintain focus on the data's magnitude without unnecessary distractions. Tooltips provide an interactive element, offering exact counts upon hovering and enhancing the user's engagement with the data.</p>
+    <p>In preparing the dataset for visualization, I converted the 'Year Acquired' and 'Square Footage' fields to numeric types and filtered out entries with missing or zero values. These transformations ensured a clean dataset that accurately represents the building inventory. Unlike previous homework assignments, where the focus might have been on static charts or different aspects of the data, this bar chart takes advantage of Altair's capabilities for managing extensive datasets and incorporating interactive features.</p>
+    <p>The choice of interactivity here is subtle yet functional. While more complex interactive features were available, the simplicity of tooltips was deliberate to keep the visualization straightforward and informative. This approach aligns with the objective of the visualization—providing a clear, at-a-glance understanding of the distribution of buildings across state agencies—making it a practical tool for public information and state resource planning.</p>
+    
 
     <h2>Visualization 2: Buildings by Congressional and Senate Districts</h2>
     <div id="vis2"></div>
-    <!-- Visualization 2 description -->
+    <p>This interactive scatter plot showcases the distribution of buildings managed by various state agencies across Congressional and Senate Districts, highlighting the temporal aspect of building acquisitions. By employing the 'Year Acquired' as a filterable dimension through a dynamic slider, the visualization not only depicts the geographical spread of agency-managed buildings but also allows users to delve into historical data, revealing trends and patterns in the expansion of state infrastructure over time. The x-axis categorizes buildings by Congressional District, while the y-axis does so by Senate District, facilitating a granular analysis of state property management.</p>
+    <p>Design choices were made with the aim of maximizing user engagement and data clarity. The color encoding by 'Agency Name' serves to visually distinguish the buildings managed by different agencies, enabling a quick identification of agency presence within specific districts. This color scheme was selected to provide a clear differentiation without overwhelming the viewer with excessive detail. The addition of tooltips that reveal specific data points upon hover introduces an additional layer of interactivity, enriching the user's exploration experience by providing immediate access to detailed information about each building, such as its agency affiliation, location, square footage, and the year it was acquired.</p>
+    <p>In preparing this visualization, data transformations included the application of a filter to ensure only records with valid 'Year Acquired' data were displayed. This not only enhanced the visualization's accuracy but also its relevance, as it focused the analysis on buildings with complete acquisition records. The implementation of an interactive slider for selecting the acquisition year range marks a significant enhancement from static visualizations, allowing users to dynamically query the dataset within a temporal context. This interactivity elevates the analysis, enabling stakeholders and the public to investigate how governmental infrastructure development has evolved over time, thus providing insights that static representations alone could not offer.</p>
 
     <h2>Visualization 3: Square Footage of Buildings Over Years by Status</h2>
     <div id="vis3"></div>
-    <!-- Visualization 3 description -->
+    <p>This scatter plot intricately explores the relationship between the square footage and construction year of state-managed buildings, with a distinct focus on how these attributes vary across different building statuses. The visualization maps 'Year Constructed' along the x-axis, spanning from 1700 to 2025, to comprehensively cover the historical breadth of the building inventory. Simultaneously, 'Square Footage' is plotted on the y-axis, revealing the scale of buildings erected in different eras. The color encoding distinctly categorizes buildings by their 'Bldg Status', such as "In Use", "Vacant", etc., enabling a visual segmentation of data that reflects the operational status of these facilities over centuries.</p>
+    <p>The design choices, including the utilization of a color scheme to represent building status, were driven by the intention to facilitate a nuanced analysis of state infrastructure. Different statuses are easily distinguishable, allowing for an immediate visual assessment of how building usage has transitioned over time. This differentiation is further supported by the implementation of an interactive dropdown menu, empowering users to filter the visualization based on building status. This element of interactivity enriches the user experience by enabling dynamic exploration of the dataset, thus allowing for targeted inquiries into the evolution of building purposes and their distribution over time.</p>
+    <p>To ensure the accuracy and relevance of the displayed data, transformations were applied to exclude records lacking a valid 'Year Constructed'. Furthermore, the introduction of an interactive filter based on building status represents a significant enhancement over static visualizations, offering a granular view into the temporal and functional shifts within the state's building inventory. By permitting users to engage directly with the dataset, this visualization not only serves as a tool for immediate data interpretation but also as a medium for uncovering deeper historical and operational insights into the state’s architectural legacy.</p>
 
     <script>
-        document.getElementById('refreshButton').addEventListener('click', function() {
-            // Display a message to indicate that data refresh process has been initiated
-            document.getElementById('refreshMessage').innerText = 'Refreshing data...';
-            
-            // Trigger the execution of the Python script here
-            fetch('refresh_data.py')
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    // Update the message to display the text output of the Python script
-                    document.getElementById('refreshMessage').innerText = data;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Update the message to indicate that an error occurred during data refresh
-                    document.getElementById('refreshMessage').innerText = 'Error occurred during data refresh.';
-                });
-        });
+      // Embed Visualization 1
+      fetch('chart1.json')
+        .then(response => response.json())
+        .then(spec => vegaEmbed('#vis1', spec, { "actions": false }));
 
-        // Embed Visualization 1
-        fetch('chart1.json')
-            .then(response => response.json())
-            .then(spec => vegaEmbed('#vis1', spec, { "actions": false }));
+      // Embed Visualization 2
+      fetch('chart2.json')
+        .then(response => response.json())
+        .then(spec => vegaEmbed('#vis2', spec, { "actions": false }));
 
-        // Embed Visualization 2
-        fetch('chart2.json')
-            .then(response => response.json())
-            .then(spec => vegaEmbed('#vis2', spec, { "actions": false }));
-
-        // Embed Visualization 3
-        fetch('chart3.json')
-            .then(response => response.json())
-            .then(spec => vegaEmbed('#vis3', spec, { "actions": false }));
+      // Embed Visualization 3
+      fetch('chart3.json')
+        .then(response => response.json())
+        .then(spec => vegaEmbed('#vis3', spec, { "actions": false }));
     </script>
 </body>
 </html>
